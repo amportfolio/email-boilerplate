@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<title>Email Boilerplate 1.0</title>
+
+	<!-- Normalize and Reset CSS -->
+	<link href="css/normalizeReset.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900" rel="stylesheet">
+
+	<!-- CSS styles for this presentation -->
+	<link href="css/presentation.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="mainContent">
+
+	<h1 class="textCenter">Email Boilerplate</h1>
+	<p class="textCenter version">Version 1.0 by Alex Moschopoulos</p>
+
+	<h2>Introduction</h2>
+	<p>This is a fully responsive boilerplate I use to develop HTML emails. Included is an HTML file with email-friendly responsive modules all laid out, but easily editable for your needs. Included images are purely for placement purposes and are not to be used to commercial purposes.</p>
+	<h2>Setup and Configuration</h2>
+	<p>If you look at the code, you&rsquo;ll see all the modules are separated with comments. Simply take out the modules you do not wish to use, and style the ones you want to use. When modifying modules, it is advised you stick to using HTML tables and any HTML 4.01 compliant tags you can use. This will ensure your layout will work on most email clients.</p>
+	<p>In the head area of the file are a set of CSS classes. The first part is a setup to potntially use a web font in the email:<p>
+	<div class="grayCell code addMarginBtm2">
+		<span class="gray">/*Calling our web font*/</span><br>
+		<span class="red">@font-face</span> {<br>
+		<span class="sinIndent"><span class="ltBlue">font-family:</span> &apos;Open Sans&apos;;</span><br>
+		<span class="sinIndent"><span class="ltBlue">font-style:</span> normal;</span><br>
+		<span class="sinIndent"><span class="ltBlue">font-weight:</span> 400;</span><br>
+		<span class="sinIndent"><span class="ltBlue">src:</span> local(&apos;Open Sans Regular&apos;), local(&apos;OpenSans-Regular&apos;), url(https://fonts.gstatic.com/s/opensans/v16/mem8YaGs126MiZpBA-UFVZ0b.woff2) format(&apos;woff2&apos;);</span><br>
+		<span class="sinIndent"><span class="ltBlue">unicode-range:</span> U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;</span><br>
+		<span class="sinIndent"><span class="ltBlue">mso-font-alt:</span> &apos;Arial&apos;;</span><br>
+		}
+	</div>
+	<p>This is <strong>NOT</strong> guaranteed to work in every email client, but it can in some. It will need a direct URL though to the font. If you&rsquo;re pulling from Google Fonts, you&rsquo;ll need to do a special trick to get the direct URL to the font, as Google&rsquo;s normal URLs link you to a full set of file versions for the font. This will work in a normal web page, but not an email</p>
+	<p>So here&rsquo;s what you do:</p>
+	<ol>
+		<li>Visit Google Fonts and pick the font you want. Add it to the &ldquo;cart&rdquo; you would place a font in for use.</li>
+		<li>Copy just the URL (href) from the <em>link</em> or <em>import</em> code they give.</li>
+		<li>Paste the URL into the address bar of a browser and press Enter. You should see a set of CSS codes for the font</li>
+		<li>Take the source code from &ldquo;latin&rdquo; and place it into your boilerplate head</li>
+		<li>Set up a backup font in the line &ldquo;mso-font-alt&rdquo; for Outlook, as the web font will not work there.</li>
+	</ol>
+	<p>Be sure to test your email to make sure the web font works on platforms that will allow it. It would also be ideal to select a font that is similar to a web safe font so you do not have a drastically-changing layout.</p>
+	<p>After the web font, the next grouping of classes are resets and issue fixes crafted by Alex Ilhan. I would strongly advise not to remove these.</p>
+	<div class="grayCell code addMarginBtm2">
+		<span class="gray">/* Some resets and issue fixes found by Alex Ilhan */</span><br>
+		<span class="green">#outlook</span> <span class="red">a</span> { <span class="ltBlue">padding:</span>0; }<br>
+		<span class="red">body</span>{ <span class="ltBlue">width:</span>100% <span class="red">!important</span>; <span class="ltBlue">-webkit</span>-text; <span class="ltBlue">size-adjust:</span>100%; <span class="ltBlue">-ms-text-size-adjust:</span>100%; <span class="ltBlue">margin:</span>0; <span class="ltBlue">padding:</span>0; }<br>
+		<span class="green">.ReadMsgBody</span> { <span class="ltBlue">width:</span> 100%; }<br>
+		<span class="green">.ExternalClass</span> {<span class="ltBlue">width:</span>100%;}<br>
+		<span class="green">.backgroundTable</span> {<span class="ltBlue">margin:</span>0 auto; <span class="ltBlue">padding:</span>0; <span class="ltBlue">width:</span>100%;<span class="red">!important</span>;}<br>
+		<span class="red">table td</span> {<span class="ltBlue">border-collapse:</span> collapse;}<br>
+		<span class="green">.ExternalClass</span> <span class="red">*</span> {<span class="ltBlue">line-height:</span> 115%;}<br>
+		<span class="gray">/* End reset */</span>
+	</div>
+	<p>The second set of classes are specifically ideal for building the responsive elements of the email. These two allow for the columns to shift in conjunction with the <em>border-collapse</em> setting put on all the table cells. It&rsquo;s up to you which one you wish you use:</p>
+	<div class="grayCell code addMarginBtm2">
+		<span class="gray">/* One methodology for mobile columns */</span><br>
+		<span class="red">*</span>[<span class="ltBlue">class=</span><span class="green">"mobileColBlock"</span>] {<span class="ltBlue">display:</span> block;}<br><br>
+		<span class="gray">/* Another methodology for mobile columns */</span><br>
+		<span class="red">*</span>[<span class="ltBlue">class=</span><span class="green">"mobileColFloat"</span>] {<span class="ltBlue">float:</span> none <span class="red">!important;</span><span class="ltBlue">width:</span> 100% <span class="red">!important</span>;}
+	</div>
+	<p>This allows you to hide elements when you go to mobile. You&rsquo;ll see them in use on the headers that contain navigation:</p>
+	<div class="grayCell code addMarginBtm2">
+		<span class="gray">/* This will hide items when going to mobile */</span><br>
+		<span class="red">*</span>[<span class="ltBlue">class=</span><span class="green">"hidden"</span>] {<span class="ltBlue">display:</span>none <span class="red">!important</span>;}
+	</div>
+	<p>You will also need to use this on the cells that remain in the row so they resize to full width when you go mobile:</p>
+	<div class="grayCell code addMarginBtm2">
+		<span class="gray">/* Sets width to 100% and adjusts height accordingly */</span><br>
+		<span class="red">*</span>[<span class="ltBlue">class=</span><span class="green">"fullWidth"</span>] {<span class="ltBlue">width:</span>100% <span class="red">!important</span>; <span class="ltBlue">height:</span>auto <span class="red">!important</span>;}
+	</div>
+	<p>You can also use this on images and other items you need to go to full width. You can also center items with CSS if you cannot use table cell centering:</p>
+	<div class="grayCell code addMarginBtm2">
+		<span class="gray">/* Centers content on mobile */</span><br>
+		<span class="red">*</span>[<span class="ltBlue">class=</span><span class="green">"centered"</span>] {<span class="ltBlue">text-align:</span>center <span class="red">!important</span>; <span class="ltBlue">width:</span>span>100% <span class="red">!important</span>; <span class="ltBlue">height:</span>auto <span class="red">!important</span>;}
+	</div>
+	<p>The rest of the included classes are more for additional padding or more strategic padding. Bear in mind these will only show up on mobile.</p>
+	<h2>Included Modules</h2>
+	<p>Here&rsquo;s a rundown of the modules in this boilerplate:</p>
+	<ul>
+		<li>Header with Logo centered</li>
+		<li>Header with Logo aligned left</li>
+		<li>Header with Logo centered and navigation below. The navigation will vanish on mobile.</li>
+		<li>Header with Logo aligned left and navigation aligned right. The navigation will vanish on mobile.</li>
+		<li>Main Hero Marquee with background image</li>
+		<li>Main Hero Marquee with solid color</li>
+		<li>Image-based main Hero Marquee</li>
+		<li>Secondary section with four icons (or images) with copy below each</li>
+		<li>Secondary section with a basic copy block</li>
+		<li>Secondary section with two images and copy below each</li>
+		<li>Simple call-to-action text block</li>
+		<li>Footer navigation</li>
+		<li>Legal section with simple copyright</li>
+		<li>Legal section with a block of copy</li>
+	</ul>
+	<p>More modules will be added as the need arises.</p>
+	<h2>Questions? Comments? Suggestions?</h2>
+	<p class="addMarginBtm3">Please feel free to <a href="https://amportfolio.com/contact">reach out</a>!</p>
+	<p class="copyright textCenter">&copy; 2019 | All rights reserved</p>
+</div>
+
+</body>
+</html>
